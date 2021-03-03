@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let a = fetch(url1);
+        let b = fetch(url2);
+        let c = fetch(url3);
+
+        //passing out multiple promises to Promise.all as an array
+        //If fulfilled, Promise.all returns a 'values' thing to .that() that contains
+        //three Response objects for the three promises that were passed to Promise.all
+        Promise.all([a,b,c]).then(values=>
+        {
+
+        });
+    </script>
+
+</body>
+</html>
