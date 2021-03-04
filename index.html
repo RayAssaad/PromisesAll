@@ -9,9 +9,9 @@
 <body>
     
     <script>
-        let a = fetch(url1);
-        let b = fetch(url2);
-        let c = fetch(url3);
+        let coffee = fetchAndDecode('coffee.jpg','blob');
+        let tea = fetchAndDecode('tea.jpg','blob');
+        let description = fetchAndDecode('description.txt','text');
 
         //passing out multiple promises to Promise.all as an array
         //If fulfilled, Promise.all returns a 'values' thing to .that() that contains
@@ -20,6 +20,26 @@
         {
             //something
         });
+
+        function fetchAndDecode(url,type){
+            return fetch(url).then(response =>{
+                //if response.ok is 'false', throw an error, otherwise we return either a blob or text
+                //using the response's .blob() and .text() methods
+                if(!response.ok){
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                } else {
+                    //if response is 'true', we return the decoded Response object
+                    if(type === 'blob'){
+                        return response.blob();
+                    } else if(type ==='text'){
+                        return response.text();
+                    }
+                }
+            })
+            .catch(e =>{
+                console.log(`There has been a problem with your fetch operation for resource "${url}": ` + e.message);
+            })
+        }
     </script>
 
 </body>
